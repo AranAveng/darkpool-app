@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "ethers": "^6.17.0",
+    "framer-motion": "^12.42.2",
+    "lucide-react": "^1.25.0",
+    "react-dropzone": "^19.1.1",
+    "react-hot-toast": "^2.6.0",
+    "recharts": "^3.9.2"
+  }
+}

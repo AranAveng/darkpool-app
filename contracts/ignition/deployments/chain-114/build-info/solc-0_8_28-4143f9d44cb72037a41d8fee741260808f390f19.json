@@ -1,0 +1,52 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-4143f9d44cb72037a41d8fee741260808f390f19",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "compilerType": "solc",
+  "toolVersions": {
+    "hardhat": "3.11.1"
+  },
+  "userSourceNameMap": {
+    "contracts/PredictionMarket.sol": "project/contracts/PredictionMarket.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode.linkReferences",
+            "evm.bytecode.object",
+            "evm.bytecode.opcodes",
+            "evm.bytecode.sourceMap",
+            "evm.deployedBytecode.immutableReferences",
+            "evm.deployedBytecode.linkReferences",
+            "evm.deployedBytecode.object",
+            "evm.deployedBytecode.opcodes",
+            "evm.deployedBytecode.sourceMap",
+            "evm.methodIdentifiers"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/MarketRegistry.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.24;\n\ncontract MarketRegistry {\n\n    enum MarketStatus {\n        Open,\n        Closed,\n        Resolving,\n        Resolved,\n        Cancelled\n    }\n\n    struct Market {\n        uint256 id;\n\n        address creator;\n\n        string slug;\n\n        string question;\n\n        string description;\n\n        string category;\n\n        string[] outcomes;\n\n        uint256 endTime;\n\n        string resolutionSource;\n\n        string resolutionRule;\n\n        uint256 createdAt;\n\n        MarketStatus status;\n    }\n   uint256 public nextMarketId;\n\nmapping(uint256 => Market) public markets;\n\nmapping(string => bool) public slugExists;\n\nevent MarketCreated(\n    uint256 indexed marketId,\n    address indexed creator,\n    string slug\n);\nfunction createMarket(\n    string memory slug,\n    string memory question,\n    string memory description,\n    string memory category,\n    string[] memory outcomes,\n    uint256 endTime,\n    string memory resolutionSource,\n    string memory resolutionRule\n) public {\n    require(bytes(slug).length > 0, \"Slug is required\");\n\nrequire(bytes(question).length > 0, \"Question is required\");\n\nrequire(outcomes.length >= 2, \"At least two outcomes required\");\n\nrequire(endTime > block.timestamp, \"End time must be in the future\");\n\nrequire(!slugExists[slug], \"Slug already exists\");\n\nuint256 marketId = nextMarketId;\n\nmarkets[marketId] = Market({\n    id: marketId,\n    creator: msg.sender,\n    slug: slug,\n    question: question,\n    description: description,\n    category: category,\n    outcomes: outcomes,\n    endTime: endTime,\n    resolutionSource: resolutionSource,\n    resolutionRule: resolutionRule,\n    createdAt: block.timestamp,\n    status: MarketStatus.Open\n});\n\nslugExists[slug] = true;\n\nnextMarketId++;\n\nemit MarketCreated(\n    marketId,\n    msg.sender,\n    slug\n);\n\n}\nfunction getMarket(\n    uint256 marketId\n) public view returns (Market memory) {\n    return markets[marketId];\n}\n\n}"
+      },
+      "project/contracts/PredictionMarket.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.24;\n\nimport \"./MarketRegistry.sol\";\n\ncontract PredictionMarket {\n\n    MarketRegistry public registry;\n    mapping(uint256 => uint256) public yesPool;\n\nmapping(uint256 => uint256) public noPool;\n\nmapping(uint256 => mapping(address => uint256))\n    public yesShares;\n    mapping(uint256 => bool) public resolved;\n\nmapping(uint256 => bool) public yesWon;\n\nmapping(uint256 => mapping(address => bool))\n    public claimed;\n\nmapping(uint256 => mapping(address => uint256))\n    public noShares;\n    event SharesPurchased(\n    uint256 indexed marketId,\n    address indexed buyer,\n    bool isYes,\n    uint256 amount\n);\n\n    constructor(address registryAddress) {\n        registry = MarketRegistry(registryAddress);\n    }\n   function buyYes(uint256 marketId) public payable {\n    require(msg.value > 0, \"Send some FLR\");\n\n    MarketRegistry.Market memory market =\n        registry.getMarket(marketId);\n\n    require(\n        block.timestamp < market.endTime,\n        \"Market has ended\"\n    );\n\n    require(\n        !resolved[marketId],\n        \"Market already resolved\"\n    );\n\n    yesPool[marketId] += msg.value;\n    yesShares[marketId][msg.sender] += msg.value;\n\n    emit SharesPurchased(\n        marketId,\n        msg.sender,\n        true,\n        msg.value\n    );\n}\nfunction buyNo(uint256 marketId) public payable {\n    require(msg.value > 0, \"Send some FLR\");\n\n    MarketRegistry.Market memory market =\n        registry.getMarket(marketId);\n\n    require(\n        block.timestamp < market.endTime,\n        \"Market has ended\"\n    );\n\n    require(\n        !resolved[marketId],\n        \"Market already resolved\"\n    );\n\n    noPool[marketId] += msg.value;\n    noShares[marketId][msg.sender] += msg.value;\n\n    emit SharesPurchased(\n        marketId,\n        msg.sender,\n        false,\n        msg.value\n    );\n}\nfunction resolveMarket(\n    uint256 marketId,\n    bool outcomeYes\n) public {\n    require(!resolved[marketId], \"Market already resolved\");\n\n    MarketRegistry.Market memory market =\n        registry.getMarket(marketId);\n\n    require(\n        msg.sender == market.creator,\n        \"Only market creator can resolve\"\n    );\n\n    require(\n        block.timestamp >= market.endTime,\n        \"Market has not ended\"\n    );\n\n    resolved[marketId] = true;\n    yesWon[marketId] = outcomeYes;\n}\nfunction claimReward(uint256 marketId) public {\n    require(resolved[marketId], \"Market not resolved\");\n\n    require(!claimed[marketId][msg.sender], \"Already claimed\");\n\n    uint256 winnerPool;\n    uint256 loserPool;\n    uint256 userShares;\n\n    if (yesWon[marketId]) {\n        winnerPool = yesPool[marketId];\n        loserPool = noPool[marketId];\n        userShares = yesShares[marketId][msg.sender];\n    } else {\n        winnerPool = noPool[marketId];\n        loserPool = yesPool[marketId];\n        userShares = noShares[marketId][msg.sender];\n    }\n\n    require(userShares > 0, \"No winning shares\");\n\n    uint256 reward =\n        userShares +\n        (loserPool * userShares) / winnerPool;\n\n    claimed[marketId][msg.sender] = true;\n\n    payable(msg.sender).transfer(reward);\n}\n}"
+      }
+    }
+  }
+}

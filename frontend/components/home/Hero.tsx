@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Hero() {
   return (
     <section className="relative overflow-hidden">
@@ -21,13 +23,19 @@ export default function Hero() {
         </p>
 
         <div className="mt-10 flex flex-wrap justify-center gap-4">
-          <button className="rounded-xl bg-cyan-500 px-8 py-4 font-semibold text-black transition hover:bg-cyan-400">
+          <Link
+            href="/markets"
+            className="rounded-xl bg-cyan-500 px-8 py-4 font-semibold text-black transition hover:bg-cyan-400"
+          >
             Explore Markets
-          </button>
+          </Link>
 
-          <button className="rounded-xl border border-gray-700 px-8 py-4 font-semibold text-white transition hover:border-cyan-500">
+          <Link
+            href="/create"
+            className="rounded-xl border border-gray-700 px-8 py-4 font-semibold text-white transition hover:border-cyan-500 hover:text-cyan-400"
+          >
             Create Market
-          </button>
+          </Link>
         </div>
       </div>
     </section>

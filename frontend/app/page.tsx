@@ -6,6 +6,7 @@ import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/home/Hero";
 import SearchBar from "@/components/home/SearchBar";
 import Stats from "@/components/home/Stats";
+import DarkPoolMarkets from "@/components/market/DarkPoolMarkets";
 import TrendingMarkets from "@/components/market/TrendingMarkets";
 
 export default function Home() {
@@ -23,9 +24,13 @@ export default function Home() {
 
       <Stats />
 
-      <TrendingMarkets
-        search={search}
-      />
+      <DarkPoolMarkets
+  search={search}
+/>
+
+<TrendingMarkets
+  search={search}
+/>
     </main>
   );
 }

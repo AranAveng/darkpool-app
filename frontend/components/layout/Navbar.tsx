@@ -92,6 +92,23 @@ const isAdmin =
 >
   How it works
 </a>
+<a
+  href="https://coston2-explorer.flare.network/"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="text-gray-300 transition hover:text-white"
+>
+  Explorer
+</a>
+
+<a
+  href="https://faucet.flare.network/"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="text-gray-300 transition hover:text-white"
+>
+  Faucet
+</a>
 
   {isAdmin && (
     <a

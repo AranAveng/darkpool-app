@@ -27,16 +27,19 @@ export function usePortfolio() {
 
         for (let i = 0; i < markets.length; i++) {
 
-          const yes = await contract.yesShares(i, address);
-          const no = await contract.noShares(i, address);
+         const marketId = markets[i].id;
 
-          const resolved = await contract.resolved(i);
+const yes = await contract.yesShares(marketId, address);
+const no = await contract.noShares(marketId, address);
+
+const resolved = markets[i].resolved;
+
 const yesWon = resolved
-  ? await contract.yesWon(i)
+  ? await contract.yesWon(marketId)
   : false;
 
 const claimed = resolved
-  ? await contract.claimed(i, address)
+  ? await contract.claimed(marketId, address)
   : false;
 
           if (Number(yes) > 0) {

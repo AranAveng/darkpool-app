@@ -110,8 +110,8 @@ export default function PortfolioPage() {
     <th className="pb-4">My Bet</th>
     <th className="pb-4">Amount</th>
     <th className="pb-4">Winning Side</th>
-    <th className="pb-4">Status</th>
-  </tr>
+     <th className="pb-4">Status</th>
+ </tr>
 </thead>
 
               <tbody>
@@ -141,12 +141,48 @@ export default function PortfolioPage() {
   ) : (
 
     positions.map((position, index) => (
+  <tr
+    key={index}
+    className="border-b border-white/5"
+  >
+    {/* Market */}
+    <td className="py-4">
+      {position.market.question}
+    </td>
 
-      <tr
-        key={index}
-        className="border-b border-white/5"
-      >
-       <td className="py-4">
+    {/* My Bet */}
+    <td
+      className={`py-4 font-semibold ${
+        position.side === "YES"
+          ? "text-green-400"
+          : "text-red-400"
+      }`}
+    >
+      {position.side}
+    </td>
+
+    {/* Amount */}
+    <td className="py-4">
+      {position.amount} FLR
+    </td>
+
+    {/* Winning Side */}
+    <td className="py-4">
+      {!position.resolved ? (
+        <span className="text-yellow-400">
+          Pending
+        </span>
+      ) : position.market.yesWon ? (
+        <span className="text-green-400 font-semibold">
+          YES
+        </span>
+      ) : (
+        <span className="text-red-400 font-semibold">
+          NO
+        </span>
+      )}
+    </td>
+    <td className="py-4">
   {!position.resolved ? (
     <span className="rounded-full bg-yellow-500/20 px-3 py-1 text-yellow-400">
       🟡 Active
@@ -165,43 +201,8 @@ export default function PortfolioPage() {
     </span>
   )}
 </td>
-
-        <td
-          className={`py-4 font-semibold ${
-            position.side === "YES"
-              ? "text-green-400"
-              : "text-red-400"
-          }`}
-        >
-          {position.side}
-        </td>
-
-        <td className="py-4">
-          {position.amount} FLR
-        </td>
-        <td className="py-4">
-  {!position.resolved ? (
-    <span className="text-yellow-400">
-      Pending
-    </span>
-  ) : position.market.yesWon ? (
-    <span className="text-green-400 font-semibold">
-      YES
-    </span>
-  ) : (
-    <span className="text-red-400 font-semibold">
-      NO
-    </span>
-  )}
-</td>
-
-        <td className="py-4">
-          Active
-        </td>
-
-      </tr>
-
-    ))
+  </tr>
+))
 
   )}
 

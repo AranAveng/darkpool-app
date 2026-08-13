@@ -74,8 +74,7 @@ setResolved(
 
       const yes = await contract.yesPool(id);
       const no = await contract.noPool(id);
-      setYesPool(yes.toString());
-setNoPool(no.toString());
+      
       const resolved = await contract.resolved(id);
 const yesWon = await contract.yesWon(id);
 

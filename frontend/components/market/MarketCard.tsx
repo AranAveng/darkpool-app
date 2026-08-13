@@ -64,7 +64,10 @@ const isResolved = market.resolved === true;
           <span>Ends</span>
           <span>
   {market.endTime
-    ? new Date(Number(market.endTime) * 1000).toLocaleDateString()
+    ? new Date(Number(market.endTime) * 1000).toLocaleString([], {
+  dateStyle: "medium",
+  timeStyle: "short",
+})
     : "-"}
 </span>
         </div>

@@ -6,8 +6,12 @@ import "./MarketRegistry.sol";
 contract PredictionMarket {
 
     MarketRegistry public registry;
-     uint256 public constant FEE_BPS = 200; // 2%
-    uint256 public constant BPS = 10000;
+
+uint256 public constant FEE_BPS = 200; // 2% total
+uint256 public constant BPS = 10000;
+
+address public constant TREASURY =
+    0xa1A6d000859955f62C8fDbFB101f70a00F3cc856;
 
     mapping(uint256 => uint256) public yesPool;
 
@@ -67,10 +71,14 @@ function seedLiquidity(uint256 marketId) external payable {
     );
     
 
-    uint256 fee = (msg.value * FEE_BPS) / BPS;
-    uint256 amount = msg.value - fee;
+    uint256 creatorFee = (msg.value * 100) / BPS; // 1%
+uint256 treasuryFee = (msg.value * 100) / BPS; // 1%
 
-    creatorFees[marketId] += fee;
+uint256 amount = msg.value - creatorFee - treasuryFee;
+
+creatorFees[marketId] += creatorFee;
+
+payable(TREASURY).transfer(treasuryFee);
 
     yesPool[marketId] += amount;
     yesShares[marketId][msg.sender] += amount;
@@ -99,10 +107,14 @@ function buyNo(uint256 marketId) public payable {
     );
    
 
-    uint256 fee = (msg.value * FEE_BPS) / BPS;
-    uint256 amount = msg.value - fee;
+    uint256 creatorFee = (msg.value * 100) / BPS; // 1%
+uint256 treasuryFee = (msg.value * 100) / BPS; // 1%
 
-    creatorFees[marketId] += fee;
+uint256 amount = msg.value - creatorFee - treasuryFee;
+
+creatorFees[marketId] += creatorFee;
+
+payable(TREASURY).transfer(treasuryFee);
 
     noPool[marketId] += amount;
     noShares[marketId][msg.sender] += amount;
@@ -187,5 +199,20 @@ if (amountToWithdraw > address(this).balance) {
     liquidityWithdrawn[marketId] = true;
 
   payable(msg.sender).transfer(amountToWithdraw);
+}
+function withdrawCreatorFees(uint256 marketId) public {
+    require(resolved[marketId], "Market not resolved");
+
+    MarketRegistry.Market memory market =
+        registry.getMarket(marketId);
+
+    require(msg.sender == market.creator, "Not creator");
+
+    uint256 fee = creatorFees[marketId];
+    require(fee > 0, "No creator fees");
+
+    creatorFees[marketId] = 0;
+
+    payable(msg.sender).transfer(fee);
 }
 }

@@ -13,6 +13,7 @@ import {
   resolveNo,
   claimReward,
   withdrawLiquidity,
+  withdrawCreatorFees,
 } from "@/lib/predictionContract";
 
 type PageProps = {
@@ -271,7 +272,31 @@ const handleWithdrawLiquidity = async () => {
     alert("Failed to withdraw liquidity.");
   }
 };
+const handleWithdrawCreatorFees = async () => {
+  try {
+    if (!marketResolved) {
+      alert("Creator fee cannot be withdrawn because the market is not resolved yet.");
+      return;
+    }
 
+    if (!isCreator) {
+      alert("Only the market creator can withdraw this fee.");
+      return;
+    }
+
+    const tx = await withdrawCreatorFees(Number(id));
+
+    await tx.wait();
+
+    alert("Creator fee withdrawn successfully!");
+  } catch (err) {
+    console.error("Creator fee withdrawal error:", err);
+
+    alert(
+      "Creator fee withdrawal failed. This usually means no creator fee is available for this market, or the contract state does not allow the withdrawal yet."
+    );
+  }
+};
   const totalPool = Number(yesPool) + Number(noPool);
 
   const yesProbability =
@@ -581,7 +606,7 @@ const tradingDisabled =
   </div>
 )}
 {marketResolved && (
-  <div className="mt-4">
+  <div className="mt-4 space-y-3">
     {liquidityWithdrawn ? (
       <div className="w-full rounded-xl border border-green-500 bg-green-900/30 py-3 text-center font-bold text-green-400">
         ✅ Liquidity Withdrawn
@@ -594,8 +619,10 @@ const tradingDisabled =
         Withdraw Liquidity
       </button>
     )}
+
   </div>
 )}
+
         </div>
       </div>
     </main>

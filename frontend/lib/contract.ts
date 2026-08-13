@@ -2,7 +2,7 @@ import { ethers } from "ethers";
 import MarketRegistry from "./abi/MarketRegistry.json";
 
 export const CONTRACT_ADDRESS =
-"0x220922dc8a1657702df5611c9e0f662d7b30fc15";
+"0xdd8ee6dbafdd899111c896d0e261c257db4c35c8";
 
 export async function getContract() {
   const ethereum = (window as Window & { ethereum?: any }).ethereum;

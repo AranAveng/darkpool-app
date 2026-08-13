@@ -2,7 +2,7 @@ import { ethers } from "ethers";
 import PredictionMarket from "./abi/PredictionMarket.json";
 
 export const PREDICTION_CONTRACT_ADDRESS =
-"0x1e86a56767b8b6212f768d45fed0ddf863e36a88";
+"0x4626d47a46dec10772f7187a7ae4eb08c155f44c";
 
 export async function getPredictionContract() {
   const ethereum = (window as Window & { ethereum?: any }).ethereum;
@@ -75,6 +75,13 @@ export async function withdrawLiquidity(marketId: number) {
   const contract = await getPredictionContract();
 
   const tx = await contract.withdrawLiquidity(marketId);
+
+  return tx;
+}
+export async function withdrawCreatorFees(marketId: number) {
+  const contract = await getPredictionContract();
+
+  const tx = await contract.withdrawCreatorFees(marketId);
 
   return tx;
 }

@@ -5,11 +5,13 @@ import { ethers } from "ethers";
 
 import { useWallet } from "@/hooks/useWallet";
 import WalletModal from "@/components/WalletModal";
+import Toast from "@/components/Toast";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [showComingSoon, setShowComingSoon] = useState(false);
   const [balance, setBalance] = useState("0");
 
   const { address, isConnected, disconnect } = useWallet();
@@ -48,9 +50,13 @@ const isAdmin =
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500 font-bold text-black">
-              D
-            </div>
+            <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl">
+  <img
+    src="/darkpool-logo.png"
+    alt="DarkPool"
+    className="h-full w-full object-cover"
+  />
+</div>
 
             <div>
               <h1 className="text-lg font-bold text-white">
@@ -67,7 +73,25 @@ const isAdmin =
   <a href="/">Markets</a>
   <a href="/create">Create</a>
   <a href="/portfolio">Portfolio</a>
-  <a href="#">Leaderboard</a>
+  <button
+  type="button"
+  onClick={() => {
+    setShowComingSoon(true);
+
+    setTimeout(() => {
+      setShowComingSoon(false);
+    }, 2500);
+  }}
+  className="text-gray-300 transition hover:text-white"
+>
+  Leaderboard
+</button>
+<a
+  href="/how-it-works"
+  className="text-gray-300 transition hover:text-white"
+>
+  How it works
+</a>
 
   {isAdmin && (
     <a
@@ -125,6 +149,9 @@ const isAdmin =
             </button>
           )}
         </div>
+ <Toast
+  message={showComingSoon ? "🚧 Leaderboard coming soon!" : ""}
+/>
       </nav>
 
       <WalletModal

@@ -20,11 +20,7 @@ const isResolved = market.resolved === true;
   return (
     <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#121826] transition hover:border-cyan-500 hover:shadow-xl hover:shadow-cyan-500/10">
 
-      <img
-        src={market.image || market.icon || "https://placehold.co/600x400"}
-        alt={market.question}
-        className="h-48 w-full object-cover"
-      />
+    
 
       <div className="space-y-4 p-5">
 

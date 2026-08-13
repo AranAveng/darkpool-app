@@ -8,6 +8,7 @@ import Navbar from "@/components/layout/Navbar";
 import { useWallet } from "@/hooks/useWallet";
 import { getContract } from "@/lib/contract";
 import { useImportMarket } from "@/context/ImportMarketContext";
+import Toast from "@/components/Toast";
 
 export default function CreateMarketPage() {
   const router = useRouter();
@@ -25,6 +26,7 @@ export default function CreateMarketPage() {
 
   const [resolutionSource, setResolutionSource] = useState("");
   const [resolutionRule, setResolutionRule] = useState("");
+  const [toastMessage, setToastMessage] = useState("");
 
   useEffect(() => {
     if (!isConnected) {
@@ -63,35 +65,35 @@ export default function CreateMarketPage() {
 
   const handleCreateMarket = async () => {
     try {
-      if (!question.trim()) {
-        alert("Please enter a market question.");
-        return;
-      }
+     if (!question.trim()) {
+  setToastMessage("Please enter a market question.");
+  return;
+}
 
-      if (!details.trim()) {
-        alert("Please enter market details.");
-        return;
-      }
+    if (!details.trim()) {
+  setToastMessage("Please enter market details.");
+  return;
+}
 
-      if (!endDate) {
-        alert("Please select an end date.");
-        return;
-      }
+     if (!endDate) {
+  setToastMessage("Please select an end date.");
+  return;
+}
 
       if (category !== "Crypto" && category !== "Sports") {
-        if (!resolutionSource.trim()) {
-          alert("Please provide a resolution source.");
-          return;
-        }
+       if (!resolutionSource.trim()) {
+  setToastMessage("Please provide a resolution source.");
+  return;
+}
 
         if (!resolutionRule.trim()) {
-          alert("Please provide a resolution rule.");
-          return;
-        }
+  setToastMessage("Please provide a resolution rule.");
+  return;
+}
       }
 
       if (!initialLiquidity || Number(initialLiquidity) < 10) {
-  alert("Minimum liquidity is 10 FLR.");
+  setToastMessage("Minimum liquidity is 10 FLR.");
   return;
 }
       const contract = await getContract();
@@ -133,8 +135,9 @@ export default function CreateMarketPage() {
   };  return (
     <>
       <Navbar />
+      <Toast message={toastMessage} />
 
-      <section className="mx-auto max-w-3xl px-6 py-12">
+      <section className="min-h-screen bg-[#0B1120] px-6 py-12">
         <h1 className="mb-2 text-4xl font-bold text-white">
           Create Prediction Market
         </h1>

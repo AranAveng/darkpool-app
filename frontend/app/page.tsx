@@ -5,9 +5,10 @@ import { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/home/Hero";
 import SearchBar from "@/components/home/SearchBar";
-import Stats from "@/components/home/Stats";
+
 import DarkPoolMarkets from "@/components/market/DarkPoolMarkets";
 import TrendingMarkets from "@/components/market/TrendingMarkets";
+import FAQ from "@/components/home/FAQ";
 
 export default function Home() {
   const [search, setSearch] = useState("");
@@ -22,7 +23,7 @@ export default function Home() {
         setSearch={setSearch}
       />
 
-      <Stats />
+     
 
       <DarkPoolMarkets
   search={search}
@@ -31,6 +32,7 @@ export default function Home() {
 <TrendingMarkets
   search={search}
 />
+ <FAQ />
     </main>
   );
 }

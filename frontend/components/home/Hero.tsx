@@ -24,7 +24,7 @@ export default function Hero() {
 
         <div className="mt-10 flex flex-wrap justify-center gap-4">
           <Link
-            href="/markets"
+            href="/"
             className="rounded-xl bg-cyan-500 px-8 py-4 font-semibold text-black transition hover:bg-cyan-400"
           >
             Explore Markets

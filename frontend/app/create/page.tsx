@@ -257,7 +257,7 @@ export default function CreateMarketPage() {
   </p>
 </div>
 
-          {category !== "Crypto" && category !== "Sports" && (
+          
             <>
   <div>
     <label className="mb-2 block text-sm text-white">
@@ -286,7 +286,6 @@ export default function CreateMarketPage() {
     />
   </div>
 </>
-          )}
 
           <button
             onClick={handleCreateMarket}

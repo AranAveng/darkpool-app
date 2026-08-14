@@ -7,7 +7,7 @@ import { usePortfolio } from "@/hooks/usePortfolio";
 
 export default function PortfolioPage() {
   const { address } = useWallet();
-  const { positions, loading } = usePortfolio();
+  const { positions, loading, createdMarkets } = usePortfolio();
   const [balance, setBalance] = useState("0");
 
   useEffect(() => {
@@ -211,6 +211,49 @@ export default function PortfolioPage() {
             </table>
 
           </div>
+
+       </div>
+
+        {/* My Created Markets */}
+        <div className="mt-10 rounded-2xl border border-white/10 bg-[#121826] p-6">
+
+          <h2 className="mb-5 text-2xl font-bold">
+            My Created Markets
+          </h2>
+
+          {createdMarkets && createdMarkets.length === 0 ? (
+            <p className="py-10 text-center text-white">
+              No markets created.
+            </p>
+          ) : (
+            <div className="space-y-3">
+              {createdMarkets?.map((market) => (
+                <div
+                  key={market.id}
+                  className="flex items-center justify-between rounded-xl border border-white/10 bg-[#0B1120] p-4"
+                >
+                  <div>
+                    <p className="font-semibold text-white">
+                      {market.question}
+                    </p>
+                    <p className="mt-1 text-sm text-white">
+                      Liquidity: {market.liquidity} FLR
+                    </p>
+                  </div>
+
+                  <span
+                    className={`rounded-full px-3 py-1 text-sm ${
+                      market.resolved
+                        ? "bg-cyan-500/20 text-cyan-400"
+                        : "bg-yellow-500/20 text-yellow-400"
+                    }`}
+                  >
+                    {market.resolved ? "✅ Resolved" : "🟡 Active"}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
 
         </div>
 

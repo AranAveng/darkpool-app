@@ -65,7 +65,7 @@ const claimed = resolved
           }
         }
 
-        setPositions(userPositions);
+       setPositions(userPositions);
 
       } catch (err) {
         console.error(err);
@@ -78,8 +78,13 @@ const claimed = resolved
 
   }, [address, markets]);
 
+  const createdMarkets = markets.filter(
+    (m) => m.creator?.toLowerCase() === address?.toLowerCase()
+  );
+
   return {
     positions,
-    loading
+    loading,
+    createdMarkets,
   };
 }

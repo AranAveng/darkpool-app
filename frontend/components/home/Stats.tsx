@@ -1,3 +1,4 @@
+import ScrollReveal from "@/components/ScrollReveal";
 export default function Stats() {
   const stats = [
     {
@@ -22,17 +23,16 @@ export default function Stats() {
     <section className="mx-auto mt-8 max-w-7xl px-6 pb-20">
       <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
         {stats.map((item) => (
-          <div
-            key={item.title}
-            className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur"
-          >
-            <p className="text-sm text-white">{item.title}</p>
+  <ScrollReveal key={item.title}>
+    <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+      <p className="text-sm text-white">{item.title}</p>
 
-            <h2 className="mt-2 text-3xl font-bold text-white">
-              {item.value}
-            </h2>
-          </div>
-        ))}
+      <h2 className="mt-2 text-3xl font-bold text-white">
+        {item.value}
+      </h2>
+    </div>
+  </ScrollReveal>
+))}
       </div>
     </section>
   );

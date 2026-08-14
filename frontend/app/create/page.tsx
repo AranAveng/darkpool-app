@@ -259,33 +259,33 @@ export default function CreateMarketPage() {
 
           {category !== "Crypto" && category !== "Sports" && (
             <>
-              <div>
-                <label className="mb-2 block text-sm text-white">
-                  Resolution Source
-                </label>
+  <div>
+    <label className="mb-2 block text-sm text-white">
+      Resolution Source
+    </label>
 
-                <input
-                  value={resolutionSource}
-                  onChange={(e) => setResolutionSource(e.target.value)}
-                  placeholder="Official website or trusted source"
-                  className="w-full rounded-xl border border-white/10 bg-[#0B1120] px-4 py-3 text-white"
-                />
-              </div>
+    <input
+      value={resolutionSource}
+      onChange={(e) => setResolutionSource(e.target.value)}
+      placeholder="Official website or trusted source"
+      className="w-full rounded-xl border border-white/10 bg-[#0B1120] px-4 py-3 text-white"
+    />
+  </div>
 
-              <div>
-                <label className="mb-2 block text-sm text-white">
-                  Resolution Rule
-                </label>
+  <div>
+    <label className="mb-2 block text-sm text-white">
+      Resolution Rule
+    </label>
 
-                <textarea
-                  rows={3}
-                  value={resolutionRule}
-                  onChange={(e) => setResolutionRule(e.target.value)}
-                  placeholder="Explain exactly how this market will be resolved."
-                  className="w-full rounded-xl border border-white/10 bg-[#0B1120] px-4 py-3 text-white"
-                />
-              </div>
-            </>
+    <textarea
+      rows={3}
+      value={resolutionRule}
+      onChange={(e) => setResolutionRule(e.target.value)}
+      placeholder="Explain exactly how this market will be resolved."
+      className="w-full rounded-xl border border-white/10 bg-[#0B1120] px-4 py-3 text-white"
+    />
+  </div>
+</>
           )}
 
           <button

@@ -10,6 +10,7 @@ import { useWallet } from "@/hooks/useWallet";
 import { getContract } from "@/lib/contract";
 import { useImportMarket } from "@/context/ImportMarketContext";
 import Toast from "@/components/Toast";
+import { playSuccessSound, playErrorSound } from "@/lib/sounds";
 
 export default function CreateMarketPage() {
   const router = useRouter();
@@ -118,7 +119,7 @@ export default function CreateMarketPage() {
 
       setImportedMarket(null);
 
-      showToast("Market created successfully!");
+      showToast("Market created successfully!"); playSuccessSound();
 
       router.push("/");
     } catch (error: any) {
@@ -131,7 +132,7 @@ export default function CreateMarketPage() {
       } else if (error?.message) {
         showToast(error.message);
       } else {
-        showToast("Failed to create market.");
+        showToast("Failed to create market."); playErrorSound();
       }
     }
   };  return (

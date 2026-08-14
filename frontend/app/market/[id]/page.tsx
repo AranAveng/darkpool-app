@@ -3,6 +3,7 @@
 import { use } from "react";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/context/ToastContext";
+import { playSuccessSound, playErrorSound } from "@/lib/sounds";
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 
@@ -142,7 +143,7 @@ if (!isResolved || !address) {
       await loadPools();
       await loadMarket();
 
-      showToast("YES shares purchased!");
+      showToast("YES shares purchased!"); playSuccessSound();
     } catch (err: any) {
   console.error(err);
 
@@ -169,7 +170,7 @@ if (!isResolved || !address) {
       await loadPools();
       await loadMarket();
 
-      showToast("NO shares purchased!");
+      showToast("NO shares purchased!"); playSuccessSound();
     } catch (err: any) {
   console.error(err);
 
@@ -201,10 +202,10 @@ console.log(
       await loadPools();
       await loadMarket();
 
-      showToast("Market resolved as YES!");
+      showToast("Market resolved as YES!"); playSuccessSound();
     } catch (err) {
   console.error("Resolve Error:", err);
-  showToast("Failed to resolve market.");
+  showToast("Failed to resolve market."); playErrorSound();
 }
   };
 
@@ -215,10 +216,10 @@ console.log(
       await loadPools();
       await loadMarket();
 
-      showToast("Market resolved as NO!");
+      showToast("Market resolved as NO!"); playSuccessSound();
     } catch (err) {
       console.error(err);
-      showToast("Failed to resolve market.");
+      showToast("Failed to resolve market."); playErrorSound();
     }
   };
   const handleClaimReward = async () => {
@@ -256,10 +257,10 @@ console.log(
     await loadPools();
     await loadMarket();
 
-    showToast("Reward claimed successfully!");
+    showToast("Reward claimed successfully!"); playSuccessSound();
   } catch (err) {
     console.error(err);
-    showToast("Failed to claim reward.");
+    showToast("Failed to claim reward."); playErrorSound();
   }
 };
 const handleWithdrawLiquidity = async () => {
@@ -273,7 +274,7 @@ const handleWithdrawLiquidity = async () => {
     showToast("Liquidity withdrawn successfully!");
   } catch (err) {
     console.error(err);
-    showToast("Failed to withdraw liquidity.");
+    showToast("Failed to withdraw liquidity."); playErrorSound();
   }
 };
 const handleWithdrawCreatorFees = async () => {

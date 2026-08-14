@@ -5,6 +5,8 @@ import "./globals.css";
 import Providers from "@/components/providers";
 import Footer from "@/components/layout/Footer";
 import BugReport from "@/components/BugReport";
+import ClickSoundProvider from "@/components/ClickSoundProvider";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,10 +34,12 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Providers>
-  {children}
-  <Footer />
-  <BugReport />
+       <Providers>
+  <ClickSoundProvider>
+    {children}
+    <Footer />
+    <BugReport />
+  </ClickSoundProvider>
 </Providers>
       </body>
     </html>

@@ -26,7 +26,7 @@ export default function Stats() {
             key={item.title}
             className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur"
           >
-            <p className="text-sm text-gray-400">{item.title}</p>
+            <p className="text-sm text-white">{item.title}</p>
 
             <h2 className="mt-2 text-3xl font-bold text-white">
               {item.value}

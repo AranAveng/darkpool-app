@@ -17,7 +17,7 @@ export default function Hero() {
           Markets for Everyone
         </h1>
 
-        <p className="mt-6 max-w-2xl text-lg text-gray-400">
+        <p className="mt-6 max-w-2xl text-lg text-white">
           Trade on real-world events while keeping your positions private.
           Built on Flare with confidential trading at its core.
         </p>

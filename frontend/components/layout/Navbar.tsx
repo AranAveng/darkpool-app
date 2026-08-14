@@ -62,14 +62,14 @@ const isAdmin =
               <h1 className="text-lg font-bold text-white">
                 DarkPool
               </h1>
-              <p className="text-xs text-gray-400">
+              <p className="text-xs text-white">
                 Private Prediction Markets
               </p>
             </div>
           </div>
 
           {/* Navigation */}
-          <div className="hidden items-center gap-8 text-sm text-gray-300 md:flex">
+          <div className="hidden items-center gap-8 text-sm text-white md:flex">
   <a href="/">Markets</a>
   <a href="/create">Create</a>
   <a href="/portfolio">Portfolio</a>
@@ -82,13 +82,13 @@ const isAdmin =
       setShowComingSoon(false);
     }, 2500);
   }}
-  className="text-gray-300 transition hover:text-white"
+  className="text-white transition hover:text-white"
 >
   Leaderboard
 </button>
 <a
   href="/how-it-works"
-  className="text-gray-300 transition hover:text-white"
+  className="text-white transition hover:text-white"
 >
   How it works
 </a>
@@ -96,7 +96,7 @@ const isAdmin =
   href="https://coston2-explorer.flare.network/"
   target="_blank"
   rel="noopener noreferrer"
-  className="text-gray-300 transition hover:text-white"
+  className="text-white transition hover:text-white"
 >
   Explorer
 </a>
@@ -105,7 +105,7 @@ const isAdmin =
   href="https://faucet.flare.network/"
   target="_blank"
   rel="noopener noreferrer"
-  className="text-gray-300 transition hover:text-white"
+  className="text-white transition hover:text-white"
 >
   Faucet
 </a>

@@ -17,7 +17,7 @@ export default function SearchBar({
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search markets... (Bitcoin, Elections, AI...)"
-          className="w-full bg-transparent text-lg text-white outline-none placeholder:text-gray-500"
+          className="w-full bg-transparent text-lg text-white outline-none placeholder:text-white"
         />
       </div>
     </section>

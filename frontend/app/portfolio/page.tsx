@@ -31,7 +31,7 @@ export default function PortfolioPage() {
           My Portfolio
         </h1>
 
-        <p className="mb-8 text-gray-400">
+        <p className="mb-8 text-white">
           View your prediction positions and rewards.
         </p>
 
@@ -40,7 +40,7 @@ export default function PortfolioPage() {
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
 
           <div className="rounded-2xl border border-white/10 bg-[#121826] p-6">
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-white">
               Wallet Balance
             </p>
 
@@ -50,7 +50,7 @@ export default function PortfolioPage() {
           </div>
 
           <div className="rounded-2xl border border-white/10 bg-[#121826] p-6">
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-white">
               Open Positions
             </p>
 
@@ -64,7 +64,7 @@ export default function PortfolioPage() {
           </div>
 
           <div className="rounded-2xl border border-white/10 bg-[#121826] p-6">
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-white">
               Claimable Rewards
             </p>
 
@@ -81,7 +81,7 @@ export default function PortfolioPage() {
           </div>
 
           <div className="rounded-2xl border border-white/10 bg-[#121826] p-6">
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-white">
               Liquidity Provided
             </p>
 
@@ -104,7 +104,7 @@ export default function PortfolioPage() {
 
             <table className="w-full">
 
-    <thead className="border-b border-white/10 text-left text-gray-400">
+    <thead className="border-b border-white/10 text-left text-white">
   <tr>
     <th className="pb-4">Market</th>
     <th className="pb-4">My Bet</th>
@@ -121,7 +121,7 @@ export default function PortfolioPage() {
     <tr>
       <td
         colSpan={4}
-        className="py-10 text-center text-gray-500"
+        className="py-10 text-center text-white"
       >
         Loading...
       </td>
@@ -132,7 +132,7 @@ export default function PortfolioPage() {
     <tr>
       <td
         colSpan={4}
-        className="py-10 text-center text-gray-500"
+        className="py-10 text-center text-white"
       >
         You haven't traded any markets yet.
       </td>

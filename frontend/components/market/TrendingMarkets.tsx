@@ -41,12 +41,12 @@ export default function TrendingMarkets({
         🌍 Trending on Polymarket
       </h2>
 
-      <p className="text-gray-400 mb-8">
+      <p className="text-white mb-8">
         Discover popular prediction markets and import them into DarkPool.
       </p>
 
       {loading ? (
-        <p className="text-gray-400">
+        <p className="text-white">
           Loading markets...
         </p>
       ) : (

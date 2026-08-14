@@ -49,14 +49,14 @@ const isResolved = market.resolved === true;
   )}
 </div>
 
-       <div className="flex justify-between text-sm text-gray-400">
+       <div className="flex justify-between text-sm text-white">
   <span>Liquidity</span>
   <span>
     💧 {Number(market.liquidity || 0).toLocaleString()} FLR
   </span>
 </div>
 
-        <div className="flex justify-between text-sm text-gray-400">
+        <div className="flex justify-between text-sm text-white">
           <span>Ends</span>
           <span>
   {market.endTime

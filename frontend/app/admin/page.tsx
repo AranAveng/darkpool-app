@@ -65,19 +65,19 @@ setActiveMarkets(active);
       <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
 
         <div className="rounded-xl bg-[#111827] p-6">
-          <p className="text-gray-400">Total Markets</p>
+          <p className="text-white">Total Markets</p>
           <h2 className="mt-2 text-3xl font-bold">
   {totalMarkets}
 </h2>
         </div>
 
         <div className="rounded-xl bg-[#111827] p-6">
-          <p className="text-gray-400">Treasury Balance</p>
+          <p className="text-white">Treasury Balance</p>
           <h2 className="mt-2 text-3xl font-bold">-- FLR</h2>
         </div>
 
         <div className="rounded-xl bg-[#111827] p-6">
-          <p className="text-gray-400">Active Markets</p>
+          <p className="text-white">Active Markets</p>
           <h2 className="mt-2 text-3xl font-bold">
   {activeMarkets}
 </h2>

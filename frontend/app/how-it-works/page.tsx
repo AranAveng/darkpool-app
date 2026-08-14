@@ -52,7 +52,7 @@ export default function HowItWorksPage() {
               How DarkPool Works
             </h1>
 
-            <p className="mt-3 text-gray-400">
+            <p className="mt-3 text-white">
               A simple guide to creating, trading, and resolving prediction markets.
             </p>
           </div>
@@ -67,7 +67,7 @@ export default function HowItWorksPage() {
                   {step.title}
                 </h2>
 
-                <p className="mt-2 leading-7 text-gray-300">
+                <p className="mt-2 leading-7 text-white">
                   {step.description}
                 </p>
               </div>
@@ -79,7 +79,7 @@ export default function HowItWorksPage() {
               Trading Fee
             </h2>
 
-            <p className="mt-2 text-gray-300">
+            <p className="mt-2 text-white">
               DarkPool charges a 2% fee on trades. The fee is deducted from
               the amount entered before it is added to the prediction pool.
             </p>

@@ -144,7 +144,7 @@ export default function CreateMarketPage() {
           Create Prediction Market
         </h1>
 
-        <p className="mb-8 text-gray-400">
+        <p className="mb-8 text-white">
           Launch a prediction market on Flare.
         </p>
 
@@ -152,7 +152,7 @@ export default function CreateMarketPage() {
 
           {/* Question */}
           <div>
-            <label className="mb-2 block text-sm text-gray-300">
+            <label className="mb-2 block text-sm text-white">
               Market Question
             </label>
 
@@ -175,7 +175,7 @@ export default function CreateMarketPage() {
 
           {/* Details */}
           <div>
-            <label className="mb-2 block text-sm text-gray-300">
+            <label className="mb-2 block text-sm text-white">
               Details
             </label>
 
@@ -190,7 +190,7 @@ export default function CreateMarketPage() {
 
           {/* Category */}
           <div>
-            <label className="mb-3 block text-sm text-gray-300">
+            <label className="mb-3 block text-sm text-white">
               Category
             </label>
 
@@ -233,7 +233,7 @@ export default function CreateMarketPage() {
 
           {/* End Date */}
           <div>
-            <label className="mb-2 block text-sm text-gray-300">
+            <label className="mb-2 block text-sm text-white">
               End Date
             </label>
 
@@ -245,7 +245,7 @@ export default function CreateMarketPage() {
             />
           </div>
           <div>
-  <label className="mb-2 block text-sm text-gray-300">
+  <label className="mb-2 block text-sm text-white">
     Initial Liquidity (FLR)
   </label>
 
@@ -259,11 +259,11 @@ export default function CreateMarketPage() {
   className="w-full rounded-xl border border-white/10 bg-[#0B1120] px-4 py-3 text-white"
 />
 
-<p className="mt-2 text-sm text-gray-400">
+<p className="mt-2 text-sm text-white">
   Minimum initial liquidity: <span className="text-white font-medium">10 FLR</span>
 </p>
 
-  <p className="mt-2 text-xs text-gray-400">
+  <p className="mt-2 text-xs text-white">
     This amount will be split 50/50 between YES and NO when the market is created.
   </p>
 </div>
@@ -271,7 +271,7 @@ export default function CreateMarketPage() {
           {category !== "Crypto" && category !== "Sports" && (
             <>
               <div>
-                <label className="mb-2 block text-sm text-gray-300">
+                <label className="mb-2 block text-sm text-white">
                   Resolution Source
                 </label>
 
@@ -284,7 +284,7 @@ export default function CreateMarketPage() {
               </div>
 
               <div>
-                <label className="mb-2 block text-sm text-gray-300">
+                <label className="mb-2 block text-sm text-white">
                   Resolution Rule
                 </label>
 

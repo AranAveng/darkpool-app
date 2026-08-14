@@ -59,7 +59,7 @@ export default function FAQ() {
           Frequently Asked Questions
         </h2>
 
-        <p className="mt-3 text-gray-400">
+        <p className="mt-3 text-white">
           Everything you need to know about DarkPool.
         </p>
       </div>
@@ -79,7 +79,7 @@ export default function FAQ() {
               </div>
             </summary>
 
-            <p className="mt-4 leading-7 text-gray-400">
+            <p className="mt-4 leading-7 text-white">
               {faq.answer}
             </p>
           </details>

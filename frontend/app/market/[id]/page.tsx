@@ -353,7 +353,7 @@ const tradingDisabled =
             {market?.question || "Loading market..."}
           </h2>
 
-          <p className="mb-8 text-gray-400">
+          <p className="mb-8 text-white">
             {market?.description || "No description available."}
           </p>
           {marketResolved && (
@@ -362,7 +362,7 @@ const tradingDisabled =
       ✅ Market Resolved
     </p>
 
-    <p className="mt-1 text-sm text-gray-300">
+    <p className="mt-1 text-sm text-white">
       Winning Outcome: {winner ? "YES" : "NO"}
     </p>
   </div>
@@ -371,14 +371,14 @@ const tradingDisabled =
           {/* Pool Stats */}
           <div className="mb-6 rounded-xl border border-white/10 bg-[#0B1120] p-4">
             <div className="flex justify-between">
-              <span className="text-gray-400">YES Pool</span>
+              <span className="text-white">YES Pool</span>
               <span className="font-semibold text-green-400">
                 {yesPool} FLR
               </span>
             </div>
 
             <div className="mt-3 flex justify-between">
-              <span className="text-gray-400">NO Pool</span>
+              <span className="text-white">NO Pool</span>
               <span className="font-semibold text-red-400">
                 {noPool} FLR
               </span>
@@ -388,14 +388,14 @@ const tradingDisabled =
           {/* Your Shares */}
           <div className="mb-6 rounded-xl border border-white/10 bg-[#0B1120] p-4">
             <div className="flex justify-between">
-              <span className="text-gray-400">Your YES Shares</span>
+              <span className="text-white">Your YES Shares</span>
               <span className="font-semibold text-green-400">
                 {yesShares} FLR
               </span>
             </div>
 
             <div className="mt-3 flex justify-between">
-              <span className="text-gray-400">Your NO Shares</span>
+              <span className="text-white">Your NO Shares</span>
               <span className="font-semibold text-red-400">
                 {noShares} FLR
               </span>
@@ -404,7 +404,7 @@ const tradingDisabled =
                     {/* Market Probability */}
           <div className="mb-6 rounded-xl border border-white/10 bg-[#0B1120] p-4">
             <div className="flex justify-between">
-              <span className="text-gray-400">YES Probability</span>
+              <span className="text-white">YES Probability</span>
 
               <span className="font-bold text-green-400">
                 {yesProbability.toFixed(1)}%
@@ -421,7 +421,7 @@ const tradingDisabled =
             </div>
 
             <div className="mt-5 flex justify-between">
-              <span className="text-gray-400">NO Probability</span>
+              <span className="text-white">NO Probability</span>
 
               <span className="font-bold text-red-400">
                 {noProbability.toFixed(1)}%
@@ -431,7 +431,7 @@ const tradingDisabled =
 
           {/* Amount */}
           <div className="mb-6">
-            <label className="mb-2 block text-sm text-gray-300">
+            <label className="mb-2 block text-sm text-white">
               Amount (FLR)
             </label>
 
@@ -460,7 +460,7 @@ const tradingDisabled =
     <div className="space-y-3 text-sm">
 
       <div className="flex justify-between">
-        <span className="text-gray-400">
+        <span className="text-white">
           Estimated Return
         </span>
 
@@ -470,7 +470,7 @@ const tradingDisabled =
       </div>
 
       <div className="flex justify-between">
-        <span className="text-gray-400">
+        <span className="text-white">
           Net Profit
         </span>
 
@@ -480,7 +480,7 @@ const tradingDisabled =
       </div>
 
       <div className="flex justify-between">
-        <span className="text-gray-400">
+        <span className="text-white">
           Maximum Loss
         </span>
 
@@ -501,7 +501,7 @@ const tradingDisabled =
     <div className="space-y-3 text-sm">
 
       <div className="flex justify-between">
-        <span className="text-gray-400">
+        <span className="text-white">
           Estimated Return
         </span>
 
@@ -511,7 +511,7 @@ const tradingDisabled =
       </div>
 
       <div className="flex justify-between">
-        <span className="text-gray-400">
+        <span className="text-white">
           Net Profit
         </span>
 
@@ -521,7 +521,7 @@ const tradingDisabled =
       </div>
 
       <div className="flex justify-between">
-        <span className="text-gray-400">
+        <span className="text-white">
           Maximum Loss
         </span>
 
@@ -547,7 +547,7 @@ const tradingDisabled =
   disabled={tradingDisabled}
   className={`rounded-xl py-4 font-bold transition ${
     tradingDisabled
-      ? "cursor-not-allowed bg-gray-600 text-gray-300"
+      ? "cursor-not-allowed bg-gray-600 text-white"
       : "bg-green-500 text-black hover:bg-green-400"
   }`}
 >
@@ -562,7 +562,7 @@ const tradingDisabled =
   disabled={tradingDisabled}
   className={`rounded-xl py-4 font-bold transition ${
     tradingDisabled
-      ? "cursor-not-allowed bg-gray-600 text-gray-300"
+      ? "cursor-not-allowed bg-gray-600 text-white"
       : "bg-red-500 text-white hover:bg-red-400"
   }`}
 >

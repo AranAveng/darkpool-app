@@ -24,12 +24,12 @@ export default function DarkPoolMarkets({
         🔥 DarkPool Markets
       </h2>
 
-      <p className="text-gray-400 mb-8">
+      <p className="text-white mb-8">
         Prediction markets created on Flare.
       </p>
 
       {loading ? (
-        <p className="text-gray-400">
+        <p className="text-white">
           Loading markets...
         </p>
       ) : (

@@ -54,7 +54,7 @@ export default function WalletModal({
 
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-white"
+            className="text-white hover:text-white"
           >
             ✕
           </button>
@@ -77,7 +77,7 @@ export default function WalletModal({
             >
               <span>{walletName(connector.name)}</span>
 
-              <span className="text-gray-400">→</span>
+              <span className="text-white">→</span>
             </button>
           ))}
         </div>

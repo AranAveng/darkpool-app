@@ -2,6 +2,7 @@
 
 import { use } from "react";
 import { useRouter } from "next/navigation";
+import { useToast } from "@/context/ToastContext";
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 
@@ -25,6 +26,7 @@ type PageProps = {
 
 export default function MarketPage({ params }: PageProps) {
   const router = useRouter();
+  const { showToast } = useToast();
   const { id } = use(params);
 
   const { address } = useWallet();
@@ -140,7 +142,7 @@ if (!isResolved || !address) {
       await loadPools();
       await loadMarket();
 
-      alert("YES shares purchased!");
+      showToast("YES shares purchased!");
     } catch (err: any) {
   console.error(err);
 
@@ -150,7 +152,7 @@ if (!isResolved || !address) {
     err?.message ||
     "Transaction failed.";
 
-  alert(message);
+  showToast(message);
 }
   };
 
@@ -167,7 +169,7 @@ if (!isResolved || !address) {
       await loadPools();
       await loadMarket();
 
-      alert("NO shares purchased!");
+      showToast("NO shares purchased!");
     } catch (err: any) {
   console.error(err);
 
@@ -177,7 +179,7 @@ if (!isResolved || !address) {
     err?.message ||
     "Transaction failed.";
 
-  alert(message);
+  showToast(message);
 }
   };
 
@@ -199,10 +201,10 @@ console.log(
       await loadPools();
       await loadMarket();
 
-      alert("Market resolved as YES!");
+      showToast("Market resolved as YES!");
     } catch (err) {
   console.error("Resolve Error:", err);
-  alert("Failed to resolve market.");
+  showToast("Failed to resolve market.");
 }
   };
 
@@ -213,10 +215,10 @@ console.log(
       await loadPools();
       await loadMarket();
 
-      alert("Market resolved as NO!");
+      showToast("Market resolved as NO!");
     } catch (err) {
       console.error(err);
-      alert("Failed to resolve market.");
+      showToast("Failed to resolve market.");
     }
   };
   const handleClaimReward = async () => {
@@ -254,10 +256,10 @@ console.log(
     await loadPools();
     await loadMarket();
 
-    alert("Reward claimed successfully!");
+    showToast("Reward claimed successfully!");
   } catch (err) {
     console.error(err);
-    alert("Failed to claim reward.");
+    showToast("Failed to claim reward.");
   }
 };
 const handleWithdrawLiquidity = async () => {
@@ -268,21 +270,21 @@ const handleWithdrawLiquidity = async () => {
 
     setLiquidityWithdrawn(true);
 
-    alert("Liquidity withdrawn successfully!");
+    showToast("Liquidity withdrawn successfully!");
   } catch (err) {
     console.error(err);
-    alert("Failed to withdraw liquidity.");
+    showToast("Failed to withdraw liquidity.");
   }
 };
 const handleWithdrawCreatorFees = async () => {
   try {
     if (!marketResolved) {
-      alert("Creator fee cannot be withdrawn because the market is not resolved yet.");
+      showToast("Creator fee cannot be withdrawn because the market is not resolved yet.");
       return;
     }
 
     if (!isCreator) {
-      alert("Only the market creator can withdraw this fee.");
+      showToast("Only the market creator can withdraw this fee.");
       return;
     }
 
@@ -290,11 +292,11 @@ const handleWithdrawCreatorFees = async () => {
 
     await tx.wait();
 
-    alert("Creator fee withdrawn successfully!");
+    showToast("Creator fee withdrawn successfully!");
   } catch (err) {
     console.error("Creator fee withdrawal error:", err);
 
-    alert(
+    showToast(
       "Creator fee withdrawal failed. This usually means no creator fee is available for this market, or the contract state does not allow the withdrawal yet."
     );
   }

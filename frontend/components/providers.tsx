@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiProvider } from "wagmi";
 import { ImportMarketProvider } from "@/context/ImportMarketContext";
+import { ToastProvider } from "@/context/ToastContext";
 
 import { config } from "@/lib/wagmi";
 
@@ -18,8 +19,10 @@ export default function Providers({
     <WagmiProvider config={config}>
   <QueryClientProvider client={queryClient}>
     <ImportMarketProvider>
-      {children}
-    </ImportMarketProvider>
+  <ToastProvider>
+    {children}
+  </ToastProvider>
+</ImportMarketProvider>
   </QueryClientProvider>
 </WagmiProvider>
   );

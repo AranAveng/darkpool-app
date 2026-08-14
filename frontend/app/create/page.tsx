@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+ import { useToast } from "@/context/ToastContext";
 import { ethers } from "ethers";
 
 import Navbar from "@/components/layout/Navbar";
@@ -12,6 +13,7 @@ import Toast from "@/components/Toast";
 
 export default function CreateMarketPage() {
   const router = useRouter();
+  const { showToast } = useToast();
 
   const { importedMarket, setImportedMarket } = useImportMarket();
   const { isConnected } = useWallet();
@@ -116,20 +118,20 @@ export default function CreateMarketPage() {
 
       setImportedMarket(null);
 
-      alert("Market created successfully!");
+      showToast("Market created successfully!");
 
       router.push("/");
     } catch (error: any) {
       console.error(error);
 
       if (error?.shortMessage) {
-        alert(error.shortMessage);
+        showToast(error.shortMessage);
       } else if (error?.reason) {
-        alert(error.reason);
+        showToast(error.reason);
       } else if (error?.message) {
-        alert(error.message);
+        showToast(error.message);
       } else {
-        alert("Failed to create market.");
+        showToast("Failed to create market.");
       }
     }
   };  return (

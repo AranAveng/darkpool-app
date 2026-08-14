@@ -51,15 +51,11 @@ export default function CreateMarketPage() {
 
   useEffect(() => {
     if (category === "Crypto") {
-      setResolutionSource("CoinGecko API");
-      setResolutionRule(
-        "This market resolves automatically using CoinGecko price data when the market closes."
-      );
+      setResolutionSource("");
+      setResolutionRule("");
     } else if (category === "Sports") {
-      setResolutionSource("Official Sports API");
-      setResolutionRule(
-        "This market resolves automatically using the official match result."
-      );
+      setResolutionSource("");
+      setResolutionRule("");
     } else {
       setResolutionSource("");
       setResolutionRule("");

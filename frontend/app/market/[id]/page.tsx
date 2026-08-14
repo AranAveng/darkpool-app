@@ -1,6 +1,7 @@
 "use client";
 
 import { use } from "react";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 
@@ -23,6 +24,7 @@ type PageProps = {
 };
 
 export default function MarketPage({ params }: PageProps) {
+  const router = useRouter();
   const { id } = use(params);
 
   const { address } = useWallet();
@@ -337,16 +339,15 @@ const tradingDisabled =
   market.creator.toLowerCase() === address.toLowerCase();
 
   return (
-    <main className="min-h-screen bg-[#0B1120] text-white">
+    <main className="min-h-screen bg-[#0B1120] text-white"onClick={() => router.push("/")}>
       <div className="mx-auto max-w-5xl px-6 py-12">
         <h1 className="mb-4 text-4xl font-bold">
           Market #{id}
         </h1>
 
-        <div className="rounded-2xl border border-white/10 bg-[#121826] p-8">
-          <div className="mb-6 aspect-video rounded-xl bg-gray-800" />
-
-          <h2 className="mb-3 text-2xl font-bold">
+        <div className="rounded-2xl border border-white/10 bg-[#121826] p-8"onClick={(e) => e.stopPropagation()}>
+          
+<h2 className="mb-3 text-2xl font-bold">
             {market?.question || "Loading market..."}
           </h2>
 

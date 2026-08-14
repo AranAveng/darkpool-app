@@ -220,18 +220,6 @@ export default function CreateMarketPage() {
             </div>
           </div>
 
-          {category === "Crypto" && (
-            <div className="rounded-xl border border-green-500/30 bg-green-500/10 p-4 text-sm text-green-300">
-              This market will resolve automatically using CoinGecko.
-            </div>
-          )}
-
-          {category === "Sports" && (
-            <div className="rounded-xl border border-blue-500/30 bg-blue-500/10 p-4 text-sm text-blue-300">
-              This market will resolve automatically using official sports results.
-            </div>
-          )}
-
           {/* End Date */}
           <div>
             <label className="mb-2 block text-sm text-white">

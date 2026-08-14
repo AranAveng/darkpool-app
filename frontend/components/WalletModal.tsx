@@ -12,7 +12,7 @@ export default function WalletModal({
   open,
   onClose,
 }: WalletModalProps) {
-  const { connectors, connectAsync, isPending } = useWallet();
+  const { connectors, connectWallet, isPending } = useWallet();
   useEffect(() => {
   if (!open) return;
 
@@ -66,13 +66,13 @@ export default function WalletModal({
               key={connector.uid}
               disabled={isPending}
               onClick={async () => {
-                try {
-                  await connectAsync({ connector });
-                  onClose();
-                } catch (error) {
-                  console.error(error);
-                }
-              }}
+  try {
+    await connectWallet(connector);
+    onClose();
+  } catch (error) {
+    console.error(error);
+  }
+}}
               className="flex w-full items-center justify-between rounded-xl border border-white/10 bg-[#111827] px-4 py-4 text-left text-white transition hover:border-cyan-500 hover:bg-[#1A2438]"
             >
               <span>{walletName(connector.name)}</span>

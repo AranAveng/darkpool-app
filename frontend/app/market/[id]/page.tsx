@@ -354,9 +354,35 @@ const tradingDisabled =
             {market?.question || "Loading market..."}
           </h2>
 
-          <p className="mb-8 text-white">
+         <p className="mb-8 text-white">
             {market?.description || "No description available."}
           </p>
+
+          {(market?.resolutionSource || market?.resolutionRule) && (
+            <div className="mb-8 rounded-xl border border-white/10 bg-[#0B1120] p-4">
+              {market?.resolutionSource && (
+                <div className="mb-3">
+                  <p className="text-xs font-semibold text-cyan-400">
+                    Resolution Source
+                  </p>
+                  <p className="mt-1 text-sm text-white">
+                    {market.resolutionSource}
+                  </p>
+                </div>
+              )}
+
+              {market?.resolutionRule && (
+                <div>
+                  <p className="text-xs font-semibold text-cyan-400">
+                    Resolution Rule
+                  </p>
+                  <p className="mt-1 text-sm text-white">
+                    {market.resolutionRule}
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
           {marketResolved && (
   <div className="mb-6 rounded-xl border border-green-500 bg-green-500/10 p-4">
     <p className="font-bold text-green-400">

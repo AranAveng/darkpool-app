@@ -46,6 +46,8 @@ export function useMarkets() {
   description: market.description,
   image: market.image,
   endTime: Number(market.endTime),
+  resolutionSource: market.resolutionSource,
+  resolutionRule: market.resolutionRule,
   liquidity,
   resolved,
   yesWon,
